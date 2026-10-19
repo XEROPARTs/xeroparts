@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XeroParts - India's #1 Genuine Auto Parts Store | Guaranteed Vehicle Fit</title>
+  
+  <!-- FontAwesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- TOP NOTICE BAR -->
+  <div class="top-notice-bar">
+    <div class="container top-notice-content">
+      <div>
+        <i class="fa-solid fa-truck-fast text-orange"></i> Pan-India Express Delivery in 48-72 Hours | 100% Genuine OEM & OES Spares
+      </div>
+      <div class="top-notice-links">
+        <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i> +91 98765 43210</a>
+        <a href="#adminSection" id="topAdminLink"><i class="fa-solid fa-chart-pie"></i> Owner Studio / Analytics</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="main-header">
+    <div class="container header-inner">
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" id="homeLogo">
+        <div class="logo-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+        <div>XERO<span class="highlight">PARTS</span></div>
+      </a>
+
+      <!-- Flipkart-Style Global Search -->
+      <div class="header-search">
+        <div class="search-wrapper">
+          <select id="searchCategorySelect" class="search-category-select">
+            <option value="all">All Categories</option>
+            <option value="engine">Engine</option>
+            <option value="brakes">Brakes</option>
+            <option value="suspension">Suspension</option>
+            <option value="electrical">Electrical</option>
+            <option value="filters">Filters & Oil</option>
+            <option value="body">Body Parts</option>
+            <option value="ac">Cooling & AC</option>
+          </select>
+          <input type="text" id="globalSearchInput" class="search-input" placeholder="Search by Part Name, OEM Number, or Car Model (e.g. Swift Brake Pad)...">
+          <button id="searchSubmitBtn" class="search-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="header-actions">
+        <!-- Switch View: Store vs Owner Studio -->
+        <button id="toggleAdminViewBtn" class="action-btn admin-toggle">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span id="adminToggleText">Owner Dashboard</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button id="cartDrawerOpenBtn" class="action-btn">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Cart</span>
+          <span id="cartCountBadge" class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CATEGORY HORIZONTAL BAR -->
+  <nav class="category-nav">
+    <div class="container">
+      <ul id="categoryListUl" class="category-list">
+        <!-- Dynamically injected categories -->
+      </ul>
+    </div>
+  </nav>
+
+  <!-- STOREFRONT CONTENT WRAPPER -->
+  <div id="storefrontView">
+    
+    <!-- HERO SECTION WITH INDIAN VEHICLE PLATE SEARCH -->
+    <section class="hero-banner">
+      <div class="container hero-content">
+        <div class="badge badge-orange" style="margin-bottom: 12px;">
+          <i class="fa-solid fa-shield-halved"></i> 100% Fitment Guaranteed by Chassis & Plate
+        </div>
+        <h1 class="hero-title">
+          India's Smart Auto Parts Store for <span>Every Indian Car</span>
+        </h1>
+        <p class="hero-subtitle">
+          Enter your vehicle registration number to instantly find genuine parts that 100% fit your car.
+        </p>
+
+        <!-- INDIAN VEHICLE NUMBER PLATE LOOKUP WIDGET -->
+        <div class="number-plate-lookup-card">
+          <div class="plate-header">
+            <span class="plate-title">
+              <i class="fa-solid fa-car"></i> Find Parts For Your Exact Vehicle
+            </span>
+            <span class="badge badge-green"><i class="fa-solid fa-check"></i> Instant RTO Decoder</span>
+          </div>
+
+          <form id="plateSearchForm" class="indian-number-plate">
+            <div class="ind-strip">
+              <div class="chakra"></div>
+              <span>IND</span>
+            </div>
+            <input 
+              type="text" 
+              id="vehicleNumberInput" 
+              class="plate-input-field" 
+              placeholder="MH 12 DE 4567" 
+              maxlength="14" 
+              autocomplete="off"
+            >
+            <button type="submit" class="plate-search-btn">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span>Find My Car Parts</span>
+            </button>
+          </form>
+
+          <!-- Quick Sample Plates -->
+          <div class="plate-quick-samples">
+            <span>Try Sample Plates:</span>
+            <button type="button" class="sample-plate-btn" data-plate="MH12DE4567">MH12DE4567 (Tata Nexon)</button>
+            <button type="button" class="sample-plate-btn" data-plate="DL01AB1234">DL01AB1234 (Maruti Swift)</button>
+            <button type="button" class="sample-plate-btn" data-plate="HR26DQ1122">HR26DQ1122 (Hyundai Creta)</button>
+            <button type="button" class="sample-plate-btn" data-plate="KA05MN7890">KA05MN7890 (Mahindra Thar)</button>
+            <button type="button" class="sample-plate-btn" data-plate="UP16XY9999">UP16XY9999 (Toyota Fortuner)</button>
+          </div>
+
+          <!-- Matched Car Active Banner -->
+          <div id="vehicleMatchBanner" class="vehicle-match-banner">
+            <div class="vehicle-match-info">
+              <div class="vehicle-icon-box">
+                <i class="fa-solid fa-car-side"></i>
+              </div>
+              <div class="vehicle-detail-text">
+                <h3 id="matchedVehicleTitle">Tata Nexon 1.2L Revotron (2022 Petrol)</h3>
+                <p id="matchedVehicleSub">Reg: <span id="matchedVehiclePlate" style="font-weight: bold; color: white;">MH 12 DE 4567</span> | Showing all guaranteed fitment parts</p>
+              </div>
+            </div>
+            <button id="clearVehicleBtn" class="clear-car-btn">
+              <i class="fa-solid fa-xmark"></i> Clear Car Filter
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRANDS LOGO GRID -->
+    <section class="brands-section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <h2 class="section-heading"><i class="fa-solid fa-layer-group"></i> Shop By <span>Automobile Brand</span></h2>
+          <span style="font-size: 0.85rem; color: #94a3b8;">Click to filter brand parts</span>
+        </div>
+        <div id="brandsGrid" class="brands-grid">
+          <!-- Dynamically populated brands -->
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN PRODUCT STOREFRONT -->
+    <main class="main-storefront">
+      <div class="container store-layout">
+        
+        <!-- SIDEBAR FILTERS (Flipkart style) -->
+        <aside class="filter-sidebar">
+          <div class="filter-group">
+            <div class="filter-title">
+              <span>Categories</span>
+              <i class="fa-solid fa-filter"></i>
+            </div>
+            <div class="filter-checkbox-list" id="sidebarCategoryFilter">
+              <!-- Dynamically populated categories -->
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-title">
+              <span>Price Range</span>
+            </div>
+            <div class="filter-checkbox-list">
+              <label class="filter-label"><input type="checkbox" name="priceRange" value="0-1000"> Under ₹1,000</label>
+              <label class="filter-label"><input type="checkbox" name="priceRange" value="1000-3000"> ₹1,000 - ₹3,000</label>
+              <label class="filter-label"><input type="checkbox" name="priceRange" value="3000-5000"> ₹3,000 - ₹5,000</label>
+              <label class="filter-label"><input type="checkbox" name="priceRange" value="5000-999999"> Above ₹5,000</label>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-title">
+              <span>Availability</span>
+            </div>
+            <div class="filter-checkbox-list">
+              <label class="filter-label"><input type="checkbox" id="filterInStockOnly" checked> In Stock Only</label>
+              <label class="filter-label"><input type="checkbox" id="filterGenuineOEM"> OEM Genuine Guaranteed</label>
+            </div>
+          </div>
+
+          <button id="resetFiltersBtn" class="action-btn" style="width: 100%; justify-content: center;">
+            <i class="fa-solid fa-arrow-rotate-left"></i> Reset All Filters
+          </button>
+        </aside>
+
+        <!-- PRODUCTS MAIN CONTENT -->
+        <section class="products-section">
+          <div class="products-top-bar">
+            <div class="parts-count-text">
+              Showing <strong id="productCountNum">0</strong> auto parts for Indian vehicles
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="font-size: 0.85rem; color: #94a3b8;">Sort by:</span>
+              <select id="sortSelect" class="sort-select">
+                <option value="featured">Featured / Best Seller</option>
+                <option value="priceLow">Price: Low to High</option>
+                <option value="priceHigh">Price: High to Low</option>
+                <option value="rating">Customer Rating</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Product Cards Grid -->
+          <div id="productsGrid" class="products-grid">
+            <!-- Dynamically populated products -->
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- OWNER & ADMIN DASHBOARD VIEW -->
+  <section id="adminView" class="admin-section">
+    <div class="container">
+      
+      <!-- Admin Top Bar -->
+      <div class="admin-header-bar">
+        <div class="admin-title-area">
+          <h2><i class="fa-solid fa-chart-line text-orange"></i> XeroParts Studio & Profit Analytics</h2>
+          <p>Real-time inventory manager, profit margin analysis, transaction charges, and order alerts</p>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button id="exportDataBtn" class="action-btn" title="Export current products to JSON">
+            <i class="fa-solid fa-file-arrow-down"></i> Export Catalog JSON
+          </button>
+          <button id="addNewPartModalBtn" class="action-btn" style="background: var(--primary); color: white;">
+            <i class="fa-solid fa-plus"></i> Add New Auto Part
+          </button>
+        </div>
+      </div>
+
+      <!-- KPI METRICS -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Total Store Revenue</div>
+          <div class="kpi-value" id="kpiTotalRevenue">₹0</div>
+          <div class="kpi-subtext"><i class="fa-solid fa-arrow-trend-up"></i> Live Sales Volume</div>
+        </div>
+        <div class="kpi-card green">
+          <div class="kpi-label">Estimated Net Profit</div>
+          <div class="kpi-value" id="kpiNetProfit">₹0</div>
+          <div class="kpi-subtext" id="kpiMarginPercent"><i class="fa-solid fa-coins"></i> Approx 28.5% Net Margin</div>
+        </div>
+        <div class="kpi-card blue">
+          <div class="kpi-label">Total Orders Placed</div>
+          <div class="kpi-value" id="kpiTotalOrders">0</div>
+          <div class="kpi-subtext"><i class="fa-solid fa-cart-check"></i> WhatsApp Alerts Sent</div>
+        </div>
+        <div class="kpi-card gold">
+          <div class="kpi-label">Total Catalog Parts & Units</div>
+          <div class="kpi-value" id="kpiTotalStockUnits">0 Units</div>
+          <div class="kpi-subtext" id="kpiLowStockWarning"><i class="fa-solid fa-box-open"></i> Live Stock Tracker</div>
+        </div>
+      </div>
+
+      <!-- Admin Sub Navigation Tabs -->
+      <div class="admin-subtabs">
+        <button class="admin-tab-btn active" data-tab="tabInventory">
+          <i class="fa-solid fa-boxes-stacked"></i> Inventory & Stock Manager
+        </button>
+        <button class="admin-tab-btn" data-tab="tabProfitFee">
+          <i class="fa-solid fa-calculator"></i> Profit & Charges Analyzer
+        </button>
+        <button class="admin-tab-btn" data-tab="tabOrders">
+          <i class="fa-solid fa-receipt"></i> Orders & WhatsApp Dispatches
+        </button>
+      </div>
+
+      <!-- TAB 1: INVENTORY & STOCK -->
+      <div id="tabInventory" class="admin-tab-content">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Part ID</th>
+                <th>Product Name & Car</th>
+                <th>Category</th>
+                <th>Cost Price (₹)</th>
+                <th>Selling Price (₹)</th>
+                <th>Profit Margin</th>
+                <th>Stock Units</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inventoryTableBody">
+              <!-- Dynamically populated stock items -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: PROFIT & CHARGES ANALYZER -->
+      <div id="tabProfitFee" class="admin-tab-content" style="display: none;">
+        <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 24px;">
+          <h3 style="font-size: 1.15rem; color: white; margin-bottom: 14px;">
+            <i class="fa-solid fa-sliders text-orange"></i> Cost & Platform Fee Configuration
+          </h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Payment Gateway & Tech Fee (%)</label>
+              <input type="number" id="settingGatewayFee" class="form-input" value="2.0" step="0.1">
+            </div>
+            <div class="form-group">
+              <label>Packaging & Handling Charge (₹ per order)</label>
+              <input type="number" id="settingHandlingFee" class="form-input" value="80" step="10">
+            </div>
+            <div class="form-group">
+              <label>Estimated Courier / Shipping Cost (₹)</label>
+              <input type="number" id="settingShippingCost" class="form-input" value="120" step="10">
+            </div>
+            <div class="form-group" style="align-self: flex-end;">
+              <button id="recalculateProfitBtn" class="action-btn" style="background: var(--primary); color: white; width: 100%;">
+                <i class="fa-solid fa-calculator"></i> Recalculate Profit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Part Details</th>
+                <th>Selling (MRP)</th>
+                <th>Cost Price</th>
+                <th>Gateway Fee (2%)</th>
+                <th>Net Profit Per Unit</th>
+                <th>Margin %</th>
+                <th>Potential Profit on Full Stock</th>
+              </tr>
+            </thead>
+            <tbody id="profitAnalysisTableBody">
+              <!-- Dynamically calculated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: ORDERS & WHATSAPP LOGS -->
+      <div id="tabOrders" class="admin-tab-content" style="display: none;">
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Phone</th>
+                <th>Vehicle</th>
+                <th>Total (₹)</th>
+                <th>Payment Mode</th>
+                <th>WhatsApp Alert</th>
+                <th>Time</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+              <!-- Dynamically populated from localStorage -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CART SLIDING DRAWER -->
+  <div id="cartDrawerOverlay" class="cart-drawer-overlay"></div>
+  <div id="cartDrawer" class="cart-drawer">
+    <div class="cart-header">
+      <h2><i class="fa-solid fa-cart-shopping text-orange"></i> Your Cart (<span id="cartHeaderCount">0</span>)</h2>
+      <button id="closeCartDrawerBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <div id="cartItemsList" class="cart-items-list">
+      <!-- Injected cart items -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Items Subtotal:</span>
+        <span id="cartSubtotal">₹0</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Estimated GST (18% included):</span>
+        <span id="cartTax">₹0</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Express Delivery:</span>
+        <span style="color: var(--accent-green); font-weight: bold;">FREE</span>
+      </div>
+      <div class="cart-summary-row total-row">
+        <span>Grand Total:</span>
+        <span id="cartGrandTotal">₹0</span>
+      </div>
+      <button id="proceedToCheckoutBtn" class="btn-checkout">
+        <i class="fa-solid fa-lock"></i> Proceed to Safe Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT & SAFE PAYMENT MODAL -->
+  <div id="checkoutModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-shield-halved text-orange"></i> Safe & Secure Checkout
+        </div>
+        <button id="closeCheckoutModalBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- Step 1: Customer Details -->
+        <h4 style="color: white; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-location-dot text-orange"></i> Shipping & Contact Details</h4>
+        <div class="form-grid" style="margin-bottom: 20px;">
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="custName" class="form-input" placeholder="e.g. Rahul Sharma" required>
+          </div>
+          <div class="form-group">
+            <label>WhatsApp Phone Number *</label>
+            <input type="tel" id="custPhone" class="form-input" placeholder="e.g. 9876543210" required>
+          </div>
+          <div class="form-group" style="grid-column: 1 / -1;">
+            <label>Delivery Address *</label>
+            <input type="text" id="custAddress" class="form-input" placeholder="House/Flat No, Street, Landmark" required>
+          </div>
+          <div class="form-group">
+            <label>City & State *</label>
+            <input type="text" id="custCity" class="form-input" placeholder="e.g. Mumbai, Maharashtra" required>
+          </div>
+          <div class="form-group">
+            <label>Pincode *</label>
+            <input type="text" id="custPincode" class="form-input" placeholder="e.g. 400001" required>
+          </div>
+        </div>
+
+        <!-- Step 2: Payment Method Selector -->
+        <h4 style="color: white; margin-bottom: 12px; font-size: 1rem;"><i class="fa-solid fa-credit-card text-orange"></i> Choose Safe Payment Option</h4>
+        <div class="payment-tabs">
+          <div class="pay-tab active" data-method="upi">
+            <i class="fa-solid fa-qrcode"></i><br>Instant UPI QR
+          </div>
+          <div class="pay-tab" data-method="card">
+            <i class="fa-solid fa-credit-card"></i><br>Debit / Credit Card
+          </div>
+          <div class="pay-tab" data-method="netbanking">
+            <i class="fa-solid fa-building-columns"></i><br>Net Banking
+          </div>
+          <div class="pay-tab" data-method="cod">
+            <i class="fa-solid fa-hand-holding-dollar"></i><br>Cash On Delivery
+          </div>
+        </div>
+
+        <!-- UPI Screen -->
+        <div id="payScreenUPI" class="pay-method-view">
+          <div class="upi-qr-card">
+            <h5 style="margin-bottom: 6px; font-weight: 800;">Scan & Pay via any UPI App</h5>
+            <p style="font-size: 0.8rem; color: #475569;">GPay, PhonePe, Paytm, BHIM or Cred</p>
+            <div class="qr-code-box">
+              <img id="dynamicUpiQrImg" src="" alt="UPI QR Code">
+            </div>
+            <div style="font-size: 0.88rem; font-weight: bold; color: #0f172a;">
+              Payable Amount: <span id="upiPayableAmount" style="color: #ff5722; font-size: 1.1rem;">₹0</span>
+            </div>
+            <div style="font-size: 0.78rem; color: #64748b; margin-top: 4px;">
+              UPI ID: <strong style="color: #0f172a;">xeroparts@upi</strong>
+            </div>
+            <div class="upi-apps-row">
+              <span class="upi-app-badge"><i class="fa-brands fa-google-pay"></i> GPay</span>
+              <span class="upi-app-badge">PhonePe</span>
+              <span class="upi-app-badge">Paytm</span>
+              <span class="upi-app-badge">BHIM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Screen -->
+        <div id="payScreenCard" class="pay-method-view" style="display: none;">
+          <div class="form-grid">
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label>Card Number</label>
+              <input type="text" class="form-input" placeholder="4111 •••• •••• 1111" maxlength="19">
+            </div>
+            <div class="form-group">
+              <label>Expiry Date</label>
+              <input type="text" class="form-input" placeholder="MM/YY" maxlength="5">
+            </div>
+            <div class="form-group">
+              <label>CVV</label>
+              <input type="password" class="form-input" placeholder="•••" maxlength="3">
+            </div>
+          </div>
+          <p style="font-size: 0.8rem; color: var(--accent-green);"><i class="fa-solid fa-lock"></i> 256-Bit SSL Bank Grade Encryption</p>
+        </div>
+
+        <!-- COD Screen -->
+        <div id="payScreenCOD" class="pay-method-view" style="display: none; padding: 14px; background: var(--bg-card); border-radius: var(--radius-md); margin-bottom: 14px;">
+          <p style="font-size: 0.85rem; color: #cbd5e1;"><i class="fa-solid fa-circle-info text-orange"></i> Cash on Delivery is available. Please keep exact cash ready upon delivery.</p>
+        </div>
+
+        <!-- Order Button with WhatsApp Dispatch -->
+        <button id="confirmOrderBtn" class="btn-checkout" style="width: 100%; margin-top: 20px;">
+          <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Confirm Order & Send WhatsApp Alert
+        </button>
+        <p style="font-size: 0.75rem; text-align: center; color: var(--text-muted); margin-top: 8px;">
+          Instant order notification will be sent to the XeroParts fulfillment team & your WhatsApp!
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD NEW AUTO PART MODAL (FOR OWNER) -->
+  <div id="addPartModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">
+          <i class="fa-solid fa-plus-circle text-orange"></i> Add New Auto Part To Catalog
+        </div>
+        <button id="closeAddPartModalBtn" class="close-drawer-btn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="addNewPartForm">
+          <div class="form-grid">
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label>Part Name *</label>
+              <input type="text" id="newPartName" class="form-input" placeholder="e.g. Brembo High Carbon Front Brake Discs" required>
+            </div>
+            <div class="form-group">
+              <label>Category *</label>
+              <select id="newPartCategory" class="form-input" required>
+                <option value="brakes">Braking System</option>
+                <option value="engine">Engine & Transmission</option>
+                <option value="suspension">Suspension & Steering</option>
+                <option value="electrical">Electrical & Lighting</option>
+                <option value="filters">Filters & Fluids</option>
+                <option value="body">Body Parts</option>
+                <option value="ac">Cooling & AC</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Car Brand *</label>
+              <select id="newPartBrand" class="form-input" required>
+                <option value="Maruti Suzuki">Maruti Suzuki</option>
+                <option value="Tata Motors">Tata Motors</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Mahindra">Mahindra</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Kia Motors">Kia Motors</option>
+                <option value="Honda">Honda</option>
+                <option value="All Brands">All Brands (Universal)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Compatible Models (Comma separated) *</label>
+              <input type="text" id="newPartModels" class="form-input" placeholder="e.g. Swift, Baleno, Dzire" required>
+            </div>
+            <div class="form-group">
+              <label>OEM Part Number</label>
+              <input type="text" id="newPartOem" class="form-input" placeholder="e.g. 55810M68P00">
+            </div>
+            <div class="form-group">
+              <label>Cost Price (₹) *</label>
+              <input type="number" id="newPartCost" class="form-input" placeholder="Your purchase cost" required>
+            </div>
+            <div class="form-group">
+              <label>Selling Price (₹) *</label>
+              <input type="number" id="newPartPrice" class="form-input" placeholder="Customer price" required>
+            </div>
+            <div class="form-group">
+              <label>Stock Quantity (Units) *</label>
+              <input type="number" id="newPartStock" class="form-input" placeholder="e.g. 25" required>
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label>Image URL</label>
+              <input type="url" id="newPartImage" class="form-input" placeholder="https://..." value="https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&w=600&q=80">
+            </div>
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label>Description</label>
+              <textarea id="newPartDesc" class="form-input" rows="2" placeholder="Brief technical specifications..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-checkout" style="width: 100%; margin-top: 14px;">
+            <i class="fa-solid fa-check"></i> Save & Add to Live Inventory
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 14px;">
+            <div class="logo-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+            <div>XERO<span class="highlight">PARTS</span></div>
+          </div>
+          <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 14px;">
+            India's most trusted digital spare parts platform. Delivering genuine OEM & OES spare parts directly to your garage with instant chassis & number plate compatibility.
+          </p>
+          <div style="display: flex; gap: 12px; font-size: 1.2rem; color: #94a3b8;">
+            <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Popular Brands</h4>
+          <ul class="footer-links">
+            <li><a href="#">Maruti Suzuki Spares</a></li>
+            <li><a href="#">Tata Motors Genuine Parts</a></li>
+            <li><a href="#">Hyundai OEM Spares</a></li>
+            <li><a href="#">Mahindra Spares</a></li>
+            <li><a href="#">Toyota Spare Parts</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Top Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#">Brake Discs & Pads</a></li>
+            <li><a href="#">Clutch & Flywheels</a></li>
+            <li><a href="#">Shock Absorbers</a></li>
+            <li><a href="#">Engine Oils & Fluids</a></li>
+            <li><a href="#">Automotive LED Bulbs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Owner & Support</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+919876543210"><i class="fa-solid fa-phone"></i> +91 98765 43210</a></li>
+            <li><a href="mailto:support@xeroparts.com"><i class="fa-solid fa-envelope"></i> support@xeroparts.com</a></li>
+            <li><a href="#adminSection" id="footerAdminLink"><i class="fa-solid fa-lock"></i> Owner Studio Login</a></li>
+            <li><a href="#"><i class="fa-solid fa-shield-check"></i> 10-Day Easy Returns</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 XeroParts Technologies India. All Rights Reserved.</div>
+        <div>Made with ❤️ for Indian Automotive Enthusiasts</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
